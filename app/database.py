@@ -17,6 +17,10 @@ DATABASE_URL = (
     f"@{PGHOST}:{PGPORT}/{PGDATABASE}"
     f"?sslmode=require"
 )
+print("PGHOST =", os.getenv("PGHOST"))
+print("PGUSER =", os.getenv("PGUSER"))
+print("PGDATABASE =", os.getenv("PGDATABASE"))
+print("PGPASSWORD =", os.getenv("PGPASSWORD"))
 
 engine = create_engine(
     DATABASE_URL,
