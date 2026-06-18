@@ -10,7 +10,10 @@ DATABASE_URL = (
     f"{os.getenv('PGPASSWORD')}@"
     f"{os.getenv('PGHOST')}:"
     f"{os.getenv('PGPORT')}/"
-    f"{os.getenv('PGDATABASE')}?sslmode=require"
+    f"{os.getenv('PGDATABASE')}"
+    f"?sslmode=require"
+    f"&channel_binding=require"
+    f"&options=endpoint%3Dep-ancient-night-atq4fhdg"
 )
 
 engine = create_engine(
