@@ -1,19 +1,21 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-import os
 from dotenv import load_dotenv
+from urllib.parse import quote_plus
+import os
 
 load_dotenv()
 
+PGHOST = os.getenv("PGHOST")
+PGPORT = os.getenv("PGPORT", "5432")
+PGDATABASE = os.getenv("PGDATABASE")
+PGUSER = os.getenv("PGUSER")
+PGPASSWORD = quote_plus(os.getenv("PGPASSWORD", ""))
+
 DATABASE_URL = (
-    f"postgresql://{os.getenv('PGUSER')}:"
-    f"{os.getenv('PGPASSWORD')}@"
-    f"{os.getenv('PGHOST')}:"
-    f"{os.getenv('PGPORT')}/"
-    f"{os.getenv('PGDATABASE')}"
+    f"postgresql://{PGUSER}:{PGPASSWORD}"
+    f"@{PGHOST}:{PGPORT}/{PGDATABASE}"
     f"?sslmode=require"
-    f"&channel_binding=require"
-    f"&options=endpoint%3Dep-ancient-night-atq4fhdg"
 )
 
 engine = create_engine(
